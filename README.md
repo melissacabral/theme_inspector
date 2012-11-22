@@ -1,6 +1,15 @@
-A useful tool while theming, the Theme Helper appears on each page and tells you exactly what conditional tags return true, and what files load on each page view. 
+# Theme Helper
 
-The Theme Helper is only visible to logged in users.
+## Description:  
+displays useful technical information on pages and posts to aid in developing Wordpress themes. Theme Helper tells you exactly what conditional tags are true, and what files load on each page view. 
 
+* Use In Conjunction with the WP Template Hierarchy Document.
 * Install in the wp-content/plugins directory
-* Enjoy!
+* Theme Helper is only visible to logged in users.
+
+## Author: 
+Melissa Cabral
+http://melissacabral.com/
+
+## Plugin URI: 
+[Download Theme Helper](https://github.com/melissacabral/theme_helper)
