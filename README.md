@@ -8,8 +8,7 @@ displays useful technical information on pages and posts to aid in developing Wo
 * Theme Helper is only visible to logged in users.
 
 ## Author: 
-Melissa Cabral
-http://melissacabral.com/
+[Melissa Cabral](http://melissacabral.com/)
 
 ## Plugin URI: 
-[Download Theme Helper](https://github.com/melissacabral/theme_helper)
+[Download Theme Helper](https://github.com/melissacabral/theme_helper) 
