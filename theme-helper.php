@@ -33,12 +33,12 @@ function rad_help_head() {
 	if (is_user_logged_in()) {?>
 <style type="text/css">
 #adminwidget {
+	font-family:"Trebuchet MS";
 	background:#fff;
 	font-size:12px;
 	bottom:10px;
 	right:5px;
 	position:fixed;
-	padding:10px;
 	border:1px dashed #ccc;
 	margin:5px;
 	height:1em;
@@ -50,6 +50,8 @@ function rad_help_head() {
 	opacity: 0.3;
 	border-radius:10px;
 	text-align:left;
+	min-height:30px;
+	min-width:150px
 }
 #adminwidget:hover {
 	height:auto;
@@ -62,11 +64,18 @@ function rad_help_head() {
 #adminwidget p {
 	margin:0;
 	line-height:1.2em;
+	
+}
+#adminwidget > *{
+	padding:6px;
 }
 #adminwidget p:first-child {
-	color:#c00;
+	color:#00c;
 	margin:0 0 .6em 0;
 	text-align:center;
+	background-color:#EEE;
+	padding:6px;
+	font-size:16px;
 }
 #adminwidget a {
 	color:#0085d5;
