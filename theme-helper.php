@@ -34,6 +34,7 @@ function rad_help_head() {
 <style type="text/css">
 #adminwidget {
 	font-family:"Trebuchet MS";
+	color:black !important;
 	background:#fff;
 	font-size:12px;
 	bottom:10px;
