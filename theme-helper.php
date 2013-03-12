@@ -52,7 +52,8 @@ function rad_help_head() {
 	border-radius:10px;
 	text-align:left;
 	min-height:30px;
-	min-width:150px
+	min-width:150px;
+	z-index: 9999999 !important;
 }
 #adminwidget:hover {
 	height:auto;
