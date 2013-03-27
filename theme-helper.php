@@ -181,7 +181,7 @@ function rad_help_footer() {
 			<li>Order: <strong>'.$post->menu_order.'</strong></li>';
 		}
 		
-		$output .= '<li>File Loaded: <strong>'.get_current_template().'</strong></li>';
+		$output .= '<li style="color:#b65b02;font-weight:bold">File Loaded: <strong>'.get_current_template().'</strong></li>';
 		$output .= '</ul><br />';
 	
 	
