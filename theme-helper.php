@@ -118,7 +118,7 @@ function rad_help_footer() {
 	<p class="center">Theme Helper</p>
 	<ul>
 	<li>ID: <strong>'.$post->ID.'</strong></li>
-	<li>Viewing: <strong>';
+	<li>Content Type: <strong>';
 		
 		if (is_front_page()) { $output .= "Front Page"; }
 		if (is_home()) { $output .= "Home (blog)"; }
