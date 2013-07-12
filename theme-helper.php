@@ -111,13 +111,18 @@ function adminhelper_currenturl() {
 function rad_help_footer() {
 	if (is_user_logged_in()) {
 		global $post;
+		if( isset($post) ){
+			$post_id = $post->ID;
+		}else{
+			$post_id = 'no post defined';
+		}
 		
 		$output = "";
 		$output .= '
 <div id="adminwidget">
 	<p class="center">Theme Helper</p>
 	<ul>
-	<li>ID: <strong>'.$post->ID.'</strong></li>
+	<li>ID: <strong>'.$post_id.'</strong></li>
 	<li>Content Type: <strong>';
 		
 		if (is_front_page()) { $output .= "Front Page"; }
