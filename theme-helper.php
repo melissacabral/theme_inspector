@@ -192,14 +192,12 @@ function rad_help_footer() {
 	
 	$output .= '
 		<p>
-			<a href="'.site_url().'/wp-admin/" class="strong">Admin Panel</a> / 
+			<a href="'.admin_url().'" class="strong">Admin Panel</a> / 
 			<a href="'.wp_logout_url(adminhelper_currenturl()).'">Logout</a>
 		</p>
 </div>
 ';
 
-	}else{
-		$output .= '<a id="adminwidget_login" title="Login to Wordpress" href="'.get_bloginfo('wpurl').'/wp-login.php?redirect_to='.urlencode(adminhelper_currenturl()).'"></a>';
 	}
 	echo $output;
 }
