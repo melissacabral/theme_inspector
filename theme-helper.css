@@ -1,0 +1,82 @@
+/**
+ * Theme Helper WordPress Plugin Styles
+ * Author: Melissa Cabral
+ */
+
+
+ #wpadminbar li#wp-admin-bar-theme-helper {
+ 	float: right;
+ 	background-color: rgba(41,200,235,.2);
+ }
+ #wpadminbar #theme-helper-toolbar{
+ 	display:none;
+ 	font-family:"Trebuchet MS"!important;
+ 	background:#fff;
+ 	font-size:16px;
+ 	position:absolute;
+ 	top:28px;
+ 	right:0;
+ 	min-width:25em;		
+ 	padding:0	
+ 	text-align:left;
+ 	z-index: 9999999 !important;
+ 	-webkit-box-shadow:  0 4px 4px rgba(0, 0, 0, .2);        
+ 	box-shadow: 0 4px 4px rgba(0,0,0,0.2);
+ }
+ #wpadminbar .theme-helper:hover #theme-helper-toolbar,
+ #wpadminbar .theme-helper:focus #theme-helper-toolbar{
+ 	display:block;
+ }
+ #wpadminbar #theme-helper-toolbar table{
+ 	width: 100%;
+ 	border-collapse: collapse;
+ }
+ #wpadminbar #theme-helper-toolbar th{
+ 	font-weight: bold;
+ 	background-color:rgba(0,0,0,.06);
+ 	padding:.5em;
+ 	color:black;
+ 	border-top:solid 1px #ddd;
+ 	width:40%;
+ 	text-shadow:none;
+ }
+ #wpadminbar #theme-helper-toolbar .file-loaded{
+ 	background-color: #FCFFD2;
+ }
+ #wpadminbar #theme-helper-toolbar td{
+ 	color:black;
+ 	padding:.5em;
+ 	border-top:solid 1px #ddd;
+ 	text-shadow:none;
+ }
+ #wpadminbar #theme-helper-toolbar .condition{
+ 	color:#999;
+ 	text-shadow:none;
+ }
+ #wpadminbar #theme-helper-toolbar .first{
+ 	font-weight: bold;
+ 	color:#000;
+ }
+ #wpadminbar #theme-helper-toolbar .credits td{
+ 	text-align: center;
+ 	font: normal 11px/13px sans-serif;
+ 	color:#666;
+ 	line-height:normal;
+ 	background-color:#EDF5FA;
+ }
+ #wpadminbar #theme-helper-toolbar .credits a{
+ 	display:inline;
+ 	font-size:inherit;
+ 	color:#5B9DE6;
+ 	text-shadow:none;
+ 	padding:0;
+ 	margin:0;
+ 	width:auto;
+ 	height: auto;
+ 	line-height:14px;
+ } 
+ #wpadminbar #theme-helper-toolbar .usewith td{
+border-top:none;
+}
+
+/*Theme Helper CSS end*/
