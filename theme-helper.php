@@ -35,7 +35,7 @@ function mmc_toolbar_link( $wp_admin_bar ) {
  */
 function mmc_generate_output(){		
 	//make sure user is logged in
-	if (is_user_logged_in()) {
+	if (current_user_can('install_themes')) {
 		global $post;
 		//begin Table Output
 		ob_start();
@@ -113,7 +113,7 @@ function mmc_generate_output(){
 					<td colspan="2">Theme Helper by <a href="https://github.com/melissacabral/theme_helper">Melissa Cabral.</td>
 				</tr>
 				<tr class="credits usewith">
-					<td colspan="2">Use with <a href="http://wptutsplus.s3.amazonaws.com/090_WPCheatSheets/WP_CheatSheet_TemplateMap.jpg">Hierarchy Diagram</a></td>
+					<td colspan="2">Use with <a target="_blank" href="http://wptutsplus.s3.amazonaws.com/090_WPCheatSheets/WP_CheatSheet_TemplateMap.jpg">Hierarchy Diagram</a></td>
 				</tr>
 			</table>
 		</div><!-- End theme Helper-->
