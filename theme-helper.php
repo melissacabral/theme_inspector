@@ -1,22 +1,20 @@
 <?php 
 /*
 Plugin Name: Theme Helper
-Plugin URI: http://wordpress.melissacabral.com/
-Description:  displays useful technical information on pages and posts to aid in developing Wordpress themes. Use In Conjunction with the WP Template Hierarchy Document
+Plugin URI: https://github.com/melissacabral/theme_helper
+Description:  displays useful technical information on pages and posts to aid in developing Wordpress themes. Only visible to administrators.  Use In Conjunction with the WP Template Hierarchy Document
 Author: Melissa Cabral
-Version: 2.0
+Version: 2.1.0
 Author URI: http://melissacabral.com/
 */
-
 /**
  * Display Theme Helper as Toolbar (Admin Bar) Item
  * @since ver 2.0
  */
 add_action( 'admin_bar_menu', 'mmc_toolbar_link', 999 );
-function mmc_toolbar_link( $wp_admin_bar ) {
-	if(!is_admin()){
+function mmc_toolbar_link( $wp_admin_bar ) {	
+	if (current_user_can('install_themes')) {
 		$html = mmc_generate_output();
-
 		$args = array(
 			'id'    => 'theme-helper',
 			'title' => 'Theme Helper',
@@ -42,6 +40,11 @@ function mmc_generate_output(){
 		?>
 			<div id="theme-helper-toolbar">
 			<table>
+				<?php if(is_admin()){ ?>
+				<tr>					
+					<td colspan="2"><a style="text-align:center" href="<?php echo home_url('/'); ?>">View your site to see Theme helper in action!</a></td>
+				</tr>
+				<?php }else{  ?>
 				<tr>
 					<th>Content Type:</th>
 					<td><?php echo adminhelper_content_type()?></td>
@@ -56,43 +59,21 @@ function mmc_generate_output(){
 					<th>True Condition(s):</th>
 					<td><?php echo adminhelper_true_conditions()?></td>
 				</tr>
-				<?php if( !is_404() && ! is_search() ){ ?>
+				<?php if( !is_404() && ! is_search() &&  get_post_type() ) { ?>
 				<tr>
 					<th>Post Type:</th>
-					<td><?php if ( get_post_type() ) { echo  get_post_type(); } ?></td>
+					<td><?php  echo  get_post_type();  ?></td>
 				</tr>
 				<?php } ?>
 				<?php 
-				if( is_category() ){ ?>
+				if( is_category() || is_tax() || is_tag() ){ ?>
 				<tr>
 					<th>Taxonomy:</th>
 					<td><?php 
-					echo 'category'; 
-					echo ' > ';
-					single_cat_title(); ?>
+					echo adminhelper_taxonomy()?>
 					</td>
 				</tr>
-				<?php }				
-				elseif( is_tax() ){?>
-				<tr>
-					<th>Taxonomy:</th>
-					<td><?php 
-					echo get_query_var( 'taxonomy' ); 
-					echo ' > ';
-					single_cat_title(); ?>
-					</td>
-				</tr>
-				<?php }				
-				elseif( is_tag() ){?>
-				<tr>
-					<th>Taxonomy:</th>
-					<td><?php 
-					echo 'tag'; 
-					echo ' > ';
-					single_cat_title(); ?>
-					</td>
-				</tr>
-				<?php } //end if taxonomy/category ?>
+				<?php }		?>			
 				<?php
 				if (isset($post->ID) && is_page() && get_post_meta($post->ID,'_wp_page_template',true) != 'default') {?>
 				<tr>
@@ -102,13 +83,14 @@ function mmc_generate_output(){
 				<tr>
 					<th>Order:</th>
 					<td><?php echo $post->menu_order ?></td>
-				</tr>
+				</tr>		
 				<?php 
 				}	?>
 				<tr class="file-loaded">
 					<th>File Loaded:</th>
 					<td><?php echo adminhelper_get_current_template() ?></td>
 				</tr>
+				<?php } //end not admin ?>
 				<tr class="credits">
 					<td colspan="2">Theme Helper by <a href="https://github.com/melissacabral/theme_helper">Melissa Cabral.</td>
 				</tr>
@@ -122,23 +104,27 @@ function mmc_generate_output(){
 	} //end is user logged in
 }
 
-/**
- * Display the theme helper at the bottom of the page
- * @since 1.0
- */
-//Added to Fetch the template file being used
-add_filter( 'template_include', 'var_template_include', 1000 );
-function var_template_include( $t ){
-	$GLOBALS['current_theme_template'] = basename($t);
-	return $t;
-}
 
 /**
  * helper functions
  */
+
+function adminhelper_taxonomy(){
+	global $post;
+	$queried_object = get_queried_object();
+	$term_id = $queried_object->term_id;
+	$tax_name = $queried_object->taxonomy;
+	$term = single_cat_title('', false );
+	$output = '';
+	$output .= $tax_name .' > ';
+	$output .= $term ;					
+	$output .= ' (ID: '. $term_id .')'; 
+	return $output;
+}
 function adminhelper_content_type(){
 	global $post;
 	$output = '';
+	if (is_admin()) { $output .= "Admin Panel"; }
 	if (is_front_page()) { $output .= "Front Page"; }
 	if (is_home()) { $output .= "Home (blog)"; }
 	if (is_single()) { $output .= "Single Post "; }
@@ -158,7 +144,6 @@ function adminhelper_content_type(){
 	if (is_paged()) { $output .= " (Paged) "; }
 	return $output;
 }
-
 function adminhelper_post_id(){
 	global $post;
 	if( isset($post) ){
@@ -173,6 +158,7 @@ function adminhelper_true_conditions(){
 	$conditions = array();	
 	$output = '';
 	$count = 0;
+	if (is_admin()) { $conditions[] = "is_admin()"; }
 	if (is_front_page()) { $conditions[] = "is_front_page()"; }
 	if (is_home()) { $conditions[] = "is_home()"; }
 	if (is_attachment() ){ $conditions[] = "is_attachment()"; }
@@ -193,7 +179,6 @@ function adminhelper_true_conditions(){
 	if (is_search()) { $conditions[] = "is_search() "; }
 	if (is_404()) { $conditions[] = "is_404() "; }
 	if (is_paged()) { $conditions[] = "is_paged() "; }
-
 	foreach($conditions as $condition){
 		if($count == 0)
 			$output.= '<span class="first condition">'.$condition.'</span>';
@@ -203,25 +188,17 @@ function adminhelper_true_conditions(){
 	}	
 	return $output;
 }
-
-
 function adminhelper_get_current_template(  ) {
 	if( !isset( $GLOBALS['current_theme_template'] ) ){
 		return false;
 	}
 	return $GLOBALS['current_theme_template'];
 }
-
-function adminhelper_currenturl() {
-	$pageURL = 'http';
-	if ( isset( $_SERVER["HTTPS"] ) && strtolower( $_SERVER["HTTPS"] ) == "on" ) {$pageURL .= "s";}
-	$pageURL .= "://";
-	if ($_SERVER["SERVER_PORT"] != "80") {
-		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-	} else {
-		$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-	}
-	return $pageURL;
+//Added to Fetch the template file being used
+add_filter( 'template_include', 'var_template_include', 1000 );
+function var_template_include( $t ){
+	$GLOBALS['current_theme_template'] = basename($t);
+	return $t;
 }
 
 /**
@@ -229,8 +206,9 @@ function adminhelper_currenturl() {
  * @since ver 2.0
  */
 add_action('wp_enqueue_scripts', 'adminhelper_enqueue_stylesheet');
+add_action('admin_enqueue_scripts', 'adminhelper_enqueue_stylesheet');
 function adminhelper_enqueue_stylesheet(){
 	$src = plugins_url( 'theme-helper.css', __FILE__ );
 	wp_register_style( 'themehelper-style', $src, '', '', 'screen' );
-	wp_enqueue_style( 'themehelper-style');
+	wp_enqueue_style( 'themehelper-style' );
 }
