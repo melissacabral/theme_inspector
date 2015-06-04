@@ -92,7 +92,7 @@ function mmc_generate_output(){
 				</tr>
 				<?php } //end not admin ?>
 				<tr class="credits">
-					<td colspan="2">Theme Helper by <a href="https://github.com/melissacabral/theme_helper">Melissa Cabral.</td>
+					<td colspan="2">Theme Helper by <a href="https://github.com/melissacabral/theme_helper">Melissa Cabral</a>.</td>
 				</tr>
 				<tr class="credits usewith">
 					<td colspan="2">Use with <a target="_blank" href="http://wptutsplus.s3.amazonaws.com/090_WPCheatSheets/WP_CheatSheet_TemplateMap.jpg">Hierarchy Diagram</a></td>
