@@ -209,7 +209,7 @@ function var_template_include( $t ){
 add_action('wp_enqueue_scripts', 'adminhelper_enqueue_stylesheet');
 add_action('admin_enqueue_scripts', 'adminhelper_enqueue_stylesheet');
 function adminhelper_enqueue_stylesheet(){
-	$src = plugins_url( 'theme-helper.css', __FILE__ );
+	$src = plugins_url( 'theme-inspector.css', __FILE__ );
 	wp_register_style( 'themehelper-style', $src, '', '', 'screen' );
 	wp_enqueue_style( 'themehelper-style' );
 }
