@@ -1,14 +1,14 @@
 <?php 
 /*
-Plugin Name: Theme Helper
-Plugin URI: https://github.com/melissacabral/theme_helper
+Plugin Name: Theme Inspector
+Plugin URI: https://github.com/melissacabral/theme_inspector
 Description:  displays useful technical information on pages and posts to aid in developing Wordpress themes. Only visible to administrators.  Use In Conjunction with the WP Template Hierarchy Document
 Author: Melissa Cabral
 Version: 2.1.0
 Author URI: http://melissacabral.com/
 */
 /**
- * Display Theme Helper as Toolbar (Admin Bar) Item
+ * Display Theme Inspector by Melissa Cabral as Toolbar (Admin Bar) Item
  * @since ver 2.0
  */
 add_action( 'admin_bar_menu', 'mmc_toolbar_link', 999 );
@@ -38,6 +38,7 @@ function mmc_generate_output(){
 		//begin Table Output
 		ob_start();
 		?>
+		<!-- WordPress Theme Inspector by Melissa Cabral-->
 			<div id="theme-helper-toolbar">
 			<table>
 				<?php if(is_admin()){ ?>
@@ -98,7 +99,7 @@ function mmc_generate_output(){
 					<td colspan="2">Use with <a target="_blank" href="http://wptutsplus.s3.amazonaws.com/090_WPCheatSheets/WP_CheatSheet_TemplateMap.jpg">Hierarchy Diagram</a></td>
 				</tr>
 			</table>
-		</div><!-- End theme Helper-->
+		</div><!-- End Theme Inspector by Melissa Cabral-->
 	<?php 	
 	return ob_get_clean();			
 	} //end is user logged in
