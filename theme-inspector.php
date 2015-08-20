@@ -17,7 +17,7 @@ function mmc_toolbar_link( $wp_admin_bar ) {
 		$html = mmc_generate_output();
 		$args = array(
 			'id'    => 'theme-helper',
-			'title' => 'Theme Helper',
+			'title' => 'Theme Inspector',
 			'parent' => 'top-secondary',		
 			'meta'  => array( 
 				'class' => 'theme-helper',
@@ -93,7 +93,7 @@ function mmc_generate_output(){
 				</tr>
 				<?php } //end not admin ?>
 				<tr class="credits">
-					<td colspan="2">Theme Helper by <a href="https://github.com/melissacabral/theme_helper">Melissa Cabral</a>.</td>
+					<td colspan="2">Theme Inspector by <a href="https://github.com/melissacabral/theme_inspector">Melissa Cabral</a>.</td>
 				</tr>
 				<tr class="credits usewith">
 					<td colspan="2">Use with <a target="_blank" href="http://wptutsplus.s3.amazonaws.com/090_WPCheatSheets/WP_CheatSheet_TemplateMap.jpg">Hierarchy Diagram</a></td>
